@@ -60,7 +60,7 @@ def create_zip_from_mockups(uploaded_files: List[io.BytesIO], mockup_image: Imag
                 result_mockup = create_mockup(app_screen, mockup_image, screen_size, screen_coords, mockup_size)
                 buf = io.BytesIO()
                 result_mockup.save(buf, format="PNG")
-                zip_file.writestr(f"mockup_{uploaded_file.name}.png", buf.getvalue())
+                zip_file.writestr(f"mockup_{uploaded_file.name.rsplit('.', 1)[0]}.png", buf.getvalue())
             except Exception as e:
                 st.error(f"Error processing file {uploaded_file.name}: {e}")
     zip_buffer.seek(0)
@@ -89,7 +89,7 @@ def main() -> None:
                 st.download_button(
                     label="💾 ダウンロード",
                     data=buf,
-                    file_name=f"mockup_{uploaded_file.name}.png",
+                    file_name=f"mockup_{uploaded_file.name.rsplit('.', 1)[0]}.png",
                     mime="image/png"
                 )
             except Exception as e:
