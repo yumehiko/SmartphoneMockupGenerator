@@ -72,6 +72,8 @@ def main() -> None:
 
     # Streamlitアプリ
     st.title('Mockup Generator')
+    # バージョン情報の表示
+    st.text('バージョン: 1.1')
 
     # ファイルアップロード
     uploaded_files = st.file_uploader("アプリ画面画像をドラッグアンドドロップしてください", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
